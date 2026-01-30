@@ -29,3 +29,7 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT ERROR:", err);
 });
+app.use(cors({
+  origin: "http://localhost:3000", // તમારા વરસેલની લિંક અહીં મૂકો
+  credentials: true
+}));
