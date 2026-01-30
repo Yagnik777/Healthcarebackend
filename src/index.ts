@@ -33,3 +33,4 @@ app.use(cors({
   origin: "http://localhost:3000", // તમારા વરસેલની લિંક અહીં મૂકો
   credentials: true
 }));
+export default app;
