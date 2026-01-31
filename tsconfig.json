@@ -1,55 +1,92 @@
-{
-  // Visit https://aka.ms/tsconfig to read more about this file
-  "compilerOptions": {
-    // File Layout
-    // "rootDir": "./src",
-    // "outDir": "./dist",
+// {
+//   // Visit https://aka.ms/tsconfig to read more about this file
+//   "compilerOptions": {
+//     // File Layout
+//     // "rootDir": "./src",
+//     // "outDir": "./dist",
 
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
+//     // Environment Settings
+//     // See also https://aka.ms/tsconfig/module
    
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+//     "types": [],
+//     // For nodejs:
+//     // "lib": ["esnext"],
+//     // "types": ["node"],
+//     // and npm install -D @types/node
 
-    // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+//     // Other Outputs
+//     "sourceMap": true,
+//     "declaration": true,
+//     "declarationMap": true,
 
-    // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+//     // Stricter Typechecking Options
+//     "noUncheckedIndexedAccess": true,
+//     "exactOptionalPropertyTypes": true,
 
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
+//     // Style Options
+//     // "noImplicitReturns": true,
+//     // "noImplicitOverride": true,
+//     // "noUnusedLocals": true,
+//     // "noUnusedParameters": true,
+//     // "noFallthroughCasesInSwitch": true,
+//     // "noPropertyAccessFromIndexSignature": true,
 
-    // Recommended Options
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true,
-    "target": "ES2020",
-    "module": "Node16",
+//     // Recommended Options
+//     "strict": true,
+//     "jsx": "react-jsx",
+//     "verbatimModuleSyntax": true,
+//     "isolatedModules": true,
+//     "noUncheckedSideEffectImports": true,
+//     "moduleDetection": "force",
+//     "skipLibCheck": true,
+//     "target": "ES2020",
+//     "module": "Node16",
+//     "rootDir": "src",
+//     "outDir": "dist",
+//     "moduleResolution": "Node16",
+//     "forceConsistentCasingInFileNames": true,
+//     "esModuleInterop": true    
+//   },
+//  "include": ["src/**/*.ts"],
+//   "ts-node": {
+//     "esm": true,
+//     "experimentalSpecifierResolution": "node"
+// }
+// }
+{
+  "compilerOptions": {
+    /* 1. Project Structure */
+    "target": "ES2022",                  // લેટેસ્ટ ફીચર્સ માટે
+    "module": "NodeNext",                // ESM (import/export) માટે શ્રેષ્ઠ
+    "moduleResolution": "NodeNext",
     "rootDir": "src",
     "outDir": "dist",
-    "moduleResolution": "Node16",
+    "allowImportingTsExtensions": false,                    // બિલ્ડ ફાઈલો અહીં જશે
+    
+    /* 2. Strict Type Checking */
+    "strict": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true    
+    "esModuleInterop": true,
+    
+    /* 3. Global Types (Express Request માટે) */
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    
+    /* 4. Quality Settings */
+    "sourceMap": true,
+    "declaration": false,                // જો તમે લાઈબ્રેરી નથી બનાવતા તો આની જરૂર નથી
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    
+    /* 5. Production Optimization */
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": false        // આને false રાખવું જેથી Imports માં વાંધો ન આવે
   },
- "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/types/**/*.d.ts"],
+  "exclude": ["node_modules", "dist"],
+  
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"
-}
+  }
 }
