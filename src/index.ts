@@ -51,13 +51,20 @@ const app = express();
 // --- 1. Middleware ---
 // CORS Configuration: Local અને Production બંને માટે
 const allowedOrigins = [
-  "http://localhost:3000",           // Local Frontend
-  "http://localhost:5173",           // Vite Local
-  process.env.FRONTEND_URL           // Production Vercel URL (ENV માં ઉમેરવી)
+  'https://healthcarefrontend-three.vercel.app',
+  "http://localhost:3000",
+  process.env.FRONTEND_URL
 ].filter(Boolean) as string[];
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    // જો રિક્વેસ્ટ વગર origin (જેમ કે Postman) હોય અથવા origin લિસ્ટમાં હોય
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
